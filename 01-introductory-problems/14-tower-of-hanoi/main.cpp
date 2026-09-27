@@ -2,58 +2,17 @@
 using namespace std;
 
 int main() {
-    
+    auto hanoi = [](auto hanoi, int n, int from, int to, int via) -> void {
+        if (n == 0) {
+            return;
+        }
+        hanoi(hanoi, n - 1, from, via, to);
+        cout << from << ' ' << to << '\n';
+        hanoi(hanoi, n - 1, via, to, from);
+    };
+    int n;
+    cin >> n;
+    cout << (1 << n) - 1 << '\n';
+    hanoi(hanoi, n, 1, 3, 2);
     return 0;
-}
-
-(C5){
-    (B4){
-        (C3){
-            (B2){
-                (C1){
-                    C1
-                }
-                B2
-                (B1){
-                    B1
-                }
-            }
-            C3
-            (C2){
-                (A1){
-                    A1
-                }
-                C2
-                (C1){
-                    C1
-                }
-            }
-        }
-        B4
-        (B3){
-            (A2){
-                (B1){
-                    B1
-                }
-                A2
-                (A1){
-                    A1
-                }
-            }
-            B3
-            (B2){
-                (C1){
-                    C1
-                }
-                B2
-                (B1){
-                    B1
-                }
-            }
-        }
-    }
-    C5
-    (C4){
-        ...
-    }
 }
