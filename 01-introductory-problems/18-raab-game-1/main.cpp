@@ -4,46 +4,22 @@ using namespace std;
 void solve() {
     int n, a, b;
     cin >> n >> a >> b;
-    if (a + b > n || abs(a - b) >= 2 || ((a == 0 && b >= 1) || (b == 0 && a >= 1))) {
+    if (a + b > n || ((a * b == 0) && (a + b >= 1))) {
         cout << "NO\n";
         return;
     }
-    int c = 1;
     vector<int> ca, cb;
-    if (a > b) {
-        ca.push_back(2);
-        ca.push_back(3);
-        ca.push_back(1);
-        cb.push_back(1);
-        cb.push_back(2);
-        cb.push_back(3);
-        a -= 2;
-        b--;
-        c = 4;
-    } else if (b > a) {
-        ca.push_back(1);
-        ca.push_back(2);
-        ca.push_back(3);
-        cb.push_back(2);
-        cb.push_back(3);
-        cb.push_back(1);
-        a--;
-        b -= 2;
-        c = 4;
+    for (int i = 1; i <= a; i++) {
+        ca.push_back(b + i);
+        cb.push_back(i);
     }
-    while (a == b && a >= 1) {
-        ca.push_back(c);
-        cb.push_back(c + 1);
-        ca.push_back(c + 1);
-        cb.push_back(c);
-        c += 2;
-        a--;
-        b--;
+    for (int i = 1; i <= b; i++) {
+        ca.push_back(i);
+        cb.push_back(a + i);
     }
-    while (c <= n) {
-        ca.push_back(c);
-        cb.push_back(c);
-        c++;
+    for (int i = a + b + 1; i <= n; i++) {
+        ca.push_back(i);
+        cb.push_back(i);
     }
     cout << "YES\n";
     for (int i = 0; i < n; i++) {
